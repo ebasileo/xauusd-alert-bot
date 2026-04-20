@@ -24,12 +24,15 @@ def load_state():
     if os.path.exists(STATE_FILE):
         with open(STATE_FILE) as f:
             return json.load(f)
-    return {
+    # First run — create a blank state
+    default = {
         "zone_high": None,
         "zone_low": None,
         "zone_active": False,
         "alerted_this_zone": False
     }
+    save_state(default)
+    return default
 
 def save_state(state):
     with open(STATE_FILE, "w") as f:
