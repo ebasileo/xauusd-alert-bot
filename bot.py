@@ -136,8 +136,7 @@ def run():
             send_telegram(msg)
             print("SELL signal sent")
             alerted_this_zone = True
-            
- send_telegram("✅ Bot is running correctly - " + datetime.utcnow().strftime('%H:%M UTC'))
+            send_telegram("✅ Bot is running correctly - " + datetime.utcnow().strftime('%H:%M UTC'))
 
     # ── SAVE STATE ─────────────────────────────────────────────────
     save_state({
