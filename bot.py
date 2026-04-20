@@ -40,8 +40,8 @@ def save_state(state):
 
 # ── FETCH XAUUSD 5-MIN CANDLES ────────────────────────────────────
 def get_candles():
-    ticker = yf.Ticker("GC=F")   # Gold futures — closest free proxy to XAUUSD
-    df = ticker.history(period="1d", interval="5m")
+    ticker = yf.Ticker("XAUUSD=X")   # Gold futures — closest free proxy to XAUUSD
+    df = ticker.history(period="2d", interval="5m")
     df = df.dropna()
     return df
 
