@@ -1,0 +1,41 @@
+name: XAUUSD Alert Bot
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'   # runs every 5 minutes
+  workflow_dispatch:          # lets you trigger it manually to test
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests yfinance
+
+      - name: Run alert bot
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python bot.py
+
+      - name: Save zone state
+        uses: actions/upload-artifact@v4
+        with:
+          name: zone-state
+          path: zone_state.json
+          retention-days: 1
+
+      - name: Restore zone state
+        uses: actions/download-artifact@v4
+        with:
+          name: zone-state
+        continue-on-error: true
