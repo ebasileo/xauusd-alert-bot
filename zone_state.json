@@ -1,6 +1,6 @@
 {
-  "zone_high": null,
-  "zone_low": null,
-  "zone_active": false,
+  "zone_high": 4520.56285,
+  "zone_low": 4499.03271,
+  "zone_active": true,
   "alerted_this_zone": false
 }
